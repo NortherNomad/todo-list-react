@@ -31,7 +31,6 @@ export default class App extends Component{
     deleteItem = (id) => {
         this.setState(({todoData}) => {
             const idx = todoData.findIndex((element) => element.id === id)
-            todoData.slice(id, 1)
             const newArray = [
                 ...todoData.slice(0, idx),
                 ...todoData.slice(idx + 1)
@@ -88,7 +87,7 @@ export default class App extends Component{
     }
 
     onFilterChange = (filter) => {
-        this.setState(filter)
+        this.setState({filter})
     }
 
     filter(items, filter) {
@@ -132,9 +131,10 @@ export default class App extends Component{
                     <SearchPanel 
                     onSearchChange = {this.onSearchChange} />
                     <ItemStatusFilter
-                    filter = {filter}
-                    onFilterChange = {this.onFilterChange} />
+                        filter = {filter}
+                        onFilterChange = {this.onFilterChange} />
                 </div>
+
                 <TodoList
                     todos={visibleItems}
                     onDeleted={this.deleteItem}
